@@ -27,6 +27,11 @@ esphome:
 # ------------------
 
 wifi:
+  fast_connect: true
+  power_save_mode: NONE
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_psk
   ap:
     ssid: $name
 

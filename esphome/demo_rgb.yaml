@@ -68,6 +68,4 @@ light:
       - addressable_color_wipe:
       - addressable_rainbow:
       - addressable_twinkle:
-      - addressable_random_twinkle:
       - addressable_fireworks:
-      - addressable_flicker:
