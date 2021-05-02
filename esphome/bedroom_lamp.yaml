@@ -17,7 +17,7 @@ esphome:
   esp8266_restore_from_flash: yes
   arduino_version: LATEST
   platformio_options:
-    upload_speed: 921600
+    upload_speed: 460800
     board_build.f_cpu: 160000000L
     board_build.f_flash: 80000000L
 
@@ -28,7 +28,6 @@ esphome:
 wifi:
   ap:
     ssid: $name
-    ap_timeout: 5s
 
 # ------------------
 # - COMMON FEATURES
@@ -58,7 +57,7 @@ light:
 
   - platform: fastled_clockless
     chipset: WS2812B
-    pin: GPIO3
+    pin: D1
     num_leds: 10
     rgb_order: GRB
     name: $name
