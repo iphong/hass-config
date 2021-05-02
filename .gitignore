@@ -1,0 +1,7 @@
+/tts/
+/.idea/
+/.cloud/
+/.storage/
+/.HA_VERSION
+/secrets.yaml
+/home-assistant*

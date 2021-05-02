@@ -1,0 +1,119 @@
+# ------------------
+# - SUBSTITUTIONS
+# ------------------
+
+substitutions:
+  host: kitchen_switches
+  name: Kitchen Switches
+  area: Kitchen
+
+# ------------------
+# - ESPHOME CONFIG
+# ------------------
+
+esphome:
+  name: $host
+  platform: ESP8266
+  board: modwifi
+  esp8266_restore_from_flash: yes
+  arduino_version: LATEST
+  platformio_options:
+    upload_speed: 921600
+    board_build.f_cpu: 160000000L
+    board_build.f_flash: 80000000L
+
+# ------------------
+# - WIFI NETWORK 
+# ------------------
+
+wifi:
+  ap:
+    ssid: $name
+
+# ------------------
+# - COMMON FEATURES
+# ------------------
+
+status_led:
+  pin:
+    number: 16
+    inverted: true
+
+captive_portal:
+
+web_server:
+
+logger:
+
+api:
+
+ota:
+
+# ------------------
+# - BINARY SENSORS 
+# ------------------
+
+binary_sensor:
+
+- platform: gpio
+  id: input_1
+  pin:
+    number: 14
+    inverted: true
+  on_press:
+  - light.toggle: light_1
+
+- platform: gpio
+  id: input_2
+  pin:
+    number: 5
+    inverted: true
+  on_press:
+  - light.toggle: light_2
+
+- platform: gpio
+  id: input_3
+  pin:
+    number: 12
+    inverted: true
+  on_press:
+  - light.toggle: light_3
+
+# ------------------
+# - OUTPUTS 
+# ------------------
+
+output:
+
+- platform: gpio
+  id: output_1
+  pin: 4
+
+- platform: gpio
+  id: output_2
+  pin: 15
+
+- platform: gpio
+  id: output_3
+  pin: 13
+
+# ------------------
+# - LIGHTS
+# ------------------
+
+light:
+
+- platform: binary
+  id: light_1
+  name: $area Light 1
+  output: output_1
+
+- platform: binary
+  id: light_2
+  name: $area Light 2
+  output: output_2
+
+- platform: binary
+  id: light_3
+  name: $area Light 3
+  output: output_3
