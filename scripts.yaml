@@ -1,0 +1,8 @@
+reload_config:
+  alias: Reload Config
+  sequence:
+  - service: automation.reload
+  - service: frontend.reload_themes
+  - service: group.reload
+  - service: homeassistant.reload_core_config
+  mode: single
