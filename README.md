@@ -1,1 +1,3 @@
-# Home Assistant Configs for my Home
+# My Home HA Configs
+
+My second build from scratch with Home Assistant and ESPHome.
