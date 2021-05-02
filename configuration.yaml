@@ -14,8 +14,6 @@ scene: !include scenes.yaml
 homeassistant:
   customize: !include customize.yaml
 
-wyzesense:
-
 binary_sensor:
 - platform: wyzesense
   device: auto
