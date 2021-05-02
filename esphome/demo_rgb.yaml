@@ -1,0 +1,73 @@
+# ------------------
+# - SUBSTITUTIONS
+# ------------------
+
+substitutions:
+  host: demo_rgb
+  name: Demo RGB
+
+# ------------------
+# - ESPHOME CONFIG
+# ------------------
+
+esphome:
+  name: $host
+  platform: esp32
+  board: esp32dev
+  arduino_version: LATEST
+  platformio_options:
+    upload_speed: 921600
+    board_build.f_cpu: 240000000L
+    board_build.f_flash: 80000000L
+
+# ------------------
+# - WIFI NETWORK 
+# ------------------
+
+wifi:
+  fast_connect: true
+  power_save_mode: NONE
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_psk
+  ap:
+    ssid: $name
+
+# ------------------
+# - COMMON FEATURES
+# ------------------
+
+status_led:
+  pin: 2
+
+captive_portal:
+
+web_server:
+
+logger:
+
+api:
+
+ota:
+
+# ------------------
+# - LIGHTS
+# ------------------
+
+light:
+
+  - platform: fastled_clockless
+    chipset: WS2812B
+    pin: 4
+    num_leds: 16
+    rgb_order: GRB
+    name: $name
+    effects:
+      - strobe:
+      - flicker:
+      - addressable_color_wipe:
+      - addressable_rainbow:
+      - addressable_twinkle:
+      - addressable_random_twinkle:
+      - addressable_fireworks:
+      - addressable_flicker:
