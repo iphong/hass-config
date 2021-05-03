@@ -1,58 +1,22 @@
 # ------------------
-# - SUBSTITUTIONS
+# - ESPHOME
 # ------------------
+
+packages:
+  common: !include .common.yaml
 
 substitutions:
   host: bathroom_switches
   name: Bathroom Switches
   area: Bathroom
 
-# ------------------
-# - ESPHOME CONFIG
-# ------------------
-
 esphome:
-  name: $host
   platform: ESP8266
   board: modwifi
   esp8266_restore_from_flash: yes
-  arduino_version: LATEST
-  platformio_options:
-    upload_speed: 921600
-    board_build.f_cpu: 160000000L
-    board_build.f_flash: 80000000L
-
-# ------------------
-# - WIFI NETWORK 
-# ------------------
-
-wifi:
-  fast_connect: true
-  power_save_mode: NONE
-  networks:
-  - ssid: !secret wifi_ssid
-    password: !secret wifi_psk
-  ap:
-    ssid: $name
-
-# ------------------
-# - COMMON FEATURES
-# ------------------
 
 status_led:
-  pin:
-    number: 16
-    inverted: true
-
-captive_portal:
-
-web_server:
-
-logger:
-
-api:
-
-ota:
+  pin: 16
 
 # ------------------
 # - BINARY SENSORS 
@@ -66,7 +30,7 @@ binary_sensor:
     number: 14
     inverted: true
   on_press:
-  - light.toggle: light_1
+  - fan.toggle: fan_1
 
 - platform: gpio
   id: input_2
@@ -80,7 +44,7 @@ binary_sensor:
     number: 12
     inverted: true
   on_press:
-  - fan.toggle: fan_1
+  - light.toggle: light_1
 
 # ------------------
 # - OUTPUTS 
@@ -109,7 +73,7 @@ fan:
 - platform: binary
   id: fan_1
   name: $area Fan
-  output: output_1
+  output: output_3
 
 # ------------------
 # - LIGHTS
@@ -120,4 +84,4 @@ light:
 - platform: binary
   id: light_1
   name: $area Light
-  output: output_3
+  output: output_1

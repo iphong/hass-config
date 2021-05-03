@@ -1,0 +1,57 @@
+esphome:
+  name: $host
+  platformio_options:
+    upload_speed: 460800
+    # board_build.f_cpu: 240000000L
+    # board_build.f_flash: 80000000L
+
+# ------------------
+# - COMMON FEATURES
+# ------------------
+
+status_led:
+  pin:
+    number: 2
+    inverted: true
+
+captive_portal:
+
+web_server:
+
+logger:
+
+ota:
+
+api:
+  services:
+  - service: restart
+    then:
+      lambda: 'ESP.restart();'
+
+# ------------------
+# - WIFI NETWORK 
+# ------------------
+
+wifi:
+  fast_connect: true
+  power_save_mode: NONE
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_psk
+  ap:
+    ssid: $name
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: $name IP Address
+    ssid:
+      name: $name Connected SSID
+    bssid:
+      name: $name Connected BSSID
+    mac_address:
+      name: $name Mac Address
+
+switch:
+  - platform: restart
+    name: $name Restart
