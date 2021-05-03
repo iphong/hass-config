@@ -41,17 +41,17 @@ wifi:
   ap:
     ssid: $name
 
-text_sensor:
-  - platform: wifi_info
-    ip_address:
-      name: $name IP Address
-    ssid:
-      name: $name Connected SSID
-    bssid:
-      name: $name Connected BSSID
-    mac_address:
-      name: $name Mac Address
+# text_sensor:
+#   - platform: wifi_info
+#     ip_address:
+#       name: $name IP Address
+#     ssid:
+#       name: $name Connected SSID
+#     bssid:
+#       name: $name Connected BSSID
+#     mac_address:
+#       name: $name Mac Address
 
-switch:
-  - platform: restart
-    name: $name Restart
+# switch:
+#   - platform: restart
+#     name: $name Restart
