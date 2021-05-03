@@ -1,0 +1,27 @@
+# ------------------
+# - ESPHOME
+# ------------------
+
+substitutions:
+  host: demo_rgb
+  name: Demo RGB
+
+packages:
+  common: !include .common.yaml
+
+esphome:
+  platform: ESP32
+  board: esp32dev
+  platformio_options:
+    board_build.f_cpu: 240000000L
+
+status_led:
+  pin: 2
+
+# ------------------
+# - INTEGRATIONS
+# ------------------
+
+esp32_ble_beacon:
+  type: iBeacon
+  uuid: '9923d93d-a409-4f93-8036-cecb9ce009d6'
