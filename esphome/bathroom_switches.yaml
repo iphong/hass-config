@@ -73,7 +73,7 @@ fan:
 - platform: binary
   id: fan_1
   name: $area Fan
-  output: output_3
+  output: output_1
 
 # ------------------
 # - LIGHTS
@@ -84,4 +84,4 @@ light:
 - platform: binary
   id: light_1
   name: $area Light
-  output: output_1
+  output: output_3
