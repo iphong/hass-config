@@ -1,18 +1,1 @@
-- id: '1618526549361'
-  alias: Sync google home devices when registry updated
-  description: ''
-  trigger:
-  - platform: event
-    event_type: device_registry_updated
-  - platform: event
-    event_type: entity_registry_updated
-  - platform: event
-    event_type: area_registry_updated
-  condition: []
-  action:
-  - device_id: e2a81772e7fc115535042dcb781b6eff
-    domain: mobile_app
-    type: notify
-    title: ''
-    message: Registry updated
-  mode: single
+[]
