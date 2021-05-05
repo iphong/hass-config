@@ -15,5 +15,7 @@ homeassistant:
   customize: !include customize.yaml
 
 device_tracker:
+  - platform: bluetooth_tracker
+    track_new_devices: yes
   - platform: bluetooth_le_tracker
     track_new_devices: yes

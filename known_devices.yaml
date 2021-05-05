@@ -47,3 +47,24 @@ mitv_5d146:
   icon:
   picture:
   track: true
+
+ble_6d_39_81_3c_49_c6:
+  name: ble_6d_39_81_3c_49_c6
+  mac: BLE_6D:39:81:3C:49:C6
+  icon:
+  picture:
+  track: true
+
+ble_6e_b0_ff_4e_b0_0e:
+  name: ble_6e_b0_ff_4e_b0_0e
+  mac: BLE_6E:B0:FF:4E:B0:0E
+  icon:
+  picture:
+  track: true
+
+ble_7a_c1_e7_7a_ad_2a:
+  name: ble_7a_c1_e7_7a_ad_2a
+  mac: BLE_7A:C1:E7:7A:AD:2A
+  icon:
+  picture:
+  track: true
