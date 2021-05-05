@@ -1,51 +1,48 @@
+
 # ------------------
 # - ESPHOME
 # ------------------
 
-substitutions:
-  host: demo_rgb
-  name: Demo RGB
-  area: Demo
-
 packages:
   common: !include .common.yaml
 
+substitutions:
+  led: '2'
+  host: plug
+  name: Plug
+
 esphome:
-  platform: esp32
-  board: nodemcu-32s
-
-status_led:
-  pin: 2
-  
-esp32_ble_tracker:
-
-# text_sensor:
-#   - platform: ble_scanner
-#     name: "BLE Devices Scanner"
+  name: $host
+  platform: ESP8266
+  board: esp12e
+  esp8266_restore_from_flash: yes
+  # name_add_mac_suffix: true
+  platformio_options:
+    board_build.f_cpu: 160000000L
 
 light:
   - platform: fastled_clockless
     chipset: WS2812B
-    pin: 4
+    pin: 5
     num_leds: 13
     rgb_order: GRB
-    name: $area RGB
+    name: $name Light
     effects: !include .light_effects.yaml
 
 sensor:
   - platform: dht
-    pin: 5
+    pin: 4
     temperature:
       id: temperature
-      name: $area Temperature
+      name: $name Temperature
     humidity:
       id: humidity
-      name: $area Humidity
+      name: $name Humidity
 
 binary_sensor:
   - platform: gpio
-    pin: 12
-    name: $area Motion
+    pin: 5
+    name: $name Motion
     device_class: motion
 
 remote_transmitter:
@@ -63,8 +60,8 @@ remote_receiver:
 
 climate:
   - platform: daikin
-    name: $area AC
-    sensor: temperature
+    name: $name AC
+    # sensor: temperature
     transmitter_id: ir_tx
     receiver_id: ir_rx
     visual:

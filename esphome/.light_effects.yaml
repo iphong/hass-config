@@ -1,0 +1,8 @@
+- random:
+- strobe:
+- flicker:
+- addressable_scan:
+- addressable_rainbow:
+- addressable_twinkle:
+- addressable_fireworks:
+- addressable_color_wipe:

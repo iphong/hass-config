@@ -13,7 +13,10 @@ scene: !include scenes.yaml
 
 homeassistant:
   customize: !include customize.yaml
+  customize_domains:
+    climate:
+      swing_modes: ['off', 'vertical']
+      hvac_modes: ['off', 'cool', 'heat', 'heat_cool', 'fan_only', 'dry']
 
-binary_sensor:
-- platform: wyzesense
-  device: auto
+device_tracker:
+  - platform: bluetooth_le_tracker

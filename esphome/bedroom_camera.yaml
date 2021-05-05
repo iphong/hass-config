@@ -42,6 +42,10 @@ esp32_camera:
   brightness: 2
   contrast: 2
 
+  max_framerate: 60 fps
+  idle_framerate: 1fps
+  resolution: QCIF
+
 # ------------------
 # - LIGHT
 # ------------------
@@ -53,14 +57,5 @@ light:
     pin: 12
     num_leds: 36
     rgb_order: GRB
-    name: $area Lamp
-    effects:
-    - addressable_scan:
-        scan_width: 4
-        move_interval: 50ms
-    - addressable_rainbow:
-    - addressable_twinkle:
-    - addressable_fireworks:
-        use_random_color: true
-        spark_probability: 15%
-    - addressable_color_wipe:
+    name: $area Bedside Lamp
+    effects: !include .light_effects.yaml

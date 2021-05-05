@@ -1,3 +1,8 @@
+substitutions:
+  led: '2'
+  host: esp_xxx
+  name: ESP XXX
+
 esphome:
   name: $host
   platformio_options:
@@ -11,7 +16,7 @@ esphome:
 
 status_led:
   pin:
-    number: 2
+    number: $led
     inverted: true
 
 captive_portal:
