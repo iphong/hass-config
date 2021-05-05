@@ -68,3 +68,66 @@ ble_7a_c1_e7_7a_ad_2a:
   icon:
   picture:
   track: true
+
+mitv_5d146_2:
+  name: MITV-5D146
+  mac: BT_68:39:43:55:D1:46
+  icon:
+  picture:
+  track: true
+
+phong_s_macbook_pro:
+  name: Phong's MacBook Pro
+  mac: BT_F4:5C:89:9E:7A:80
+  icon:
+  picture:
+  track: true
+
+ble_4b_ae_25_78_17_a1:
+  name: ble_4b_ae_25_78_17_a1
+  mac: BLE_4B:AE:25:78:17:A1
+  icon:
+  picture:
+  track: true
+
+ble_41_29_7d_dc_0e_c5:
+  name: ble_41_29_7d_dc_0e_c5
+  mac: BLE_41:29:7D:DC:0E:C5
+  icon:
+  picture:
+  track: true
+
+ble_59_7a_37_4d_97_ac:
+  name: ble_59_7a_37_4d_97_ac
+  mac: BLE_59:7A:37:4D:97:AC
+  icon:
+  picture:
+  track: true
+
+ble_5c_6f_eb_53_ff_63:
+  name: ble_5c_6f_eb_53_ff_63
+  mac: BLE_5C:6F:EB:53:FF:63
+  icon:
+  picture:
+  track: true
+
+ble_5c_b9_6c_82_84_91:
+  name: ble_5c_b9_6c_82_84_91
+  mac: BLE_5C:B9:6C:82:84:91
+  icon:
+  picture:
+  track: true
+
+ble_7d_95_81_93_3a_5d:
+  name: ble_7d_95_81_93_3a_5d
+  mac: BLE_7D:95:81:93:3A:5D
+  icon:
+  picture:
+  track: true
+
+ble_4c_49_a5_c8_b8_81:
+  name: ble_4c_49_a5_c8_b8_81
+  mac: BLE_4C:49:A5:C8:B8:81
+  icon:
+  picture:
+  track: true
