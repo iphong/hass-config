@@ -1,0 +1,49 @@
+
+ble_5d_11_f0_ca_61_16:
+  name: ble_5d_11_f0_ca_61_16
+  mac: BLE_5D:11:F0:CA:61:16
+  icon:
+  picture:
+  track: true
+
+ble_74_35_f5_7a_84_b5:
+  name: ble_74_35_f5_7a_84_b5
+  mac: BLE_74:35:F5:7A:84:B5
+  icon:
+  picture:
+  track: true
+
+ble_61_0e_5f_28_87_01:
+  name: ble_61_0e_5f_28_87_01
+  mac: BLE_61:0E:5F:28:87:01
+  icon:
+  picture:
+  track: true
+
+scan_parameters:
+  name: Scan Parameters
+  mac: BLE_F4:5C:89:9E:7A:80
+  icon:
+  picture:
+  track: true
+
+ble_40_31_3c_51_b5_1b:
+  name: ble_40_31_3c_51_b5_1b
+  mac: BLE_40:31:3C:51:B5:1B
+  icon:
+  picture:
+  track: true
+
+ble_47_94_ac_77_44_35:
+  name: ble_47_94_ac_77_44_35
+  mac: BLE_47:94:AC:77:44:35
+  icon:
+  picture:
+  track: true
+
+mitv_5d146:
+  name: MITV-5D146
+  mac: BLE_68:39:43:55:D1:46
+  icon:
+  picture:
+  track: true
