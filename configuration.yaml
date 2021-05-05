@@ -12,6 +12,9 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 homeassistant:
+  allowlist_external_dirs:
+    - /media
+    - /tmp
   customize: !include customize.yaml
   
 
