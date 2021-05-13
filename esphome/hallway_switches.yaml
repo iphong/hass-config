@@ -3,20 +3,15 @@
 # ------------------
 
 packages:
-  common: !include .common.yaml
+  base: !include common/switches.yaml
 
 substitutions:
-  host: dining_room_switches
-  name: Dining Room Switches
-  area: Dining Room
+  host: hallway_switches
+  name: Hallway Switches
+  area: Hallway
 
-esphome:
-  platform: ESP8266
-  board: modwifi
-  esp8266_restore_from_flash: yes
-
-status_led:
-  pin: 16
+wifi:
+  use_address: dining_room_switches.local
 
 # ------------------
 # - BINARY SENSORS 

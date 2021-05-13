@@ -1,14 +1,13 @@
 substitutions:
-  led: '2'
-  host: esp_xxx
-  name: ESP XXX
+  led: GPIO2
 
 esphome:
   name: $host
+  build_path: build/$host
   platformio_options:
     upload_speed: 460800
-    # board_build.f_cpu: 240000000L
-    # board_build.f_flash: 80000000L
+    board_build.f_cpu: 160000000L
+    board_build.f_flash: 80000000L
 
 # ------------------
 # - COMMON FEATURES
@@ -24,6 +23,7 @@ captive_portal:
 web_server:
 
 logger:
+  baud_rate: 0
 
 ota:
 

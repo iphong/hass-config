@@ -1,0 +1,12 @@
+
+packages:
+  common: !include base.yaml
+
+substitutions:
+  led: GPIO16
+
+esphome:
+  platform: ESP8266
+  board: modwifi
+  esp8266_restore_from_flash: yes
+

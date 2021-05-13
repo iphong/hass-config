@@ -1,0 +1,14 @@
+
+packages:
+  common: !include base.yaml
+
+substitutions:
+  led: GPIO13
+
+esphome:
+  platform: ESP8266
+  board: esp8285
+  esp8266_restore_from_flash: yes
+  platformio_options:
+    board_build.ldscript: eagle.flash.1m.ld
+
