@@ -2,22 +2,13 @@
 # - ESPHOME
 # ------------------
 
+packages:
+  common: !include common/camera.yaml
+
 substitutions:
   host: bedroom_camera
   name: Bedroom Camera
   area: Bedroom
-
-packages:
-  common: !include .common.yaml
-
-esphome:
-  platform: ESP32
-  board: esp32cam
-  platformio_options:
-    board_build.f_cpu: 240000000L
-
-status_led:
-  pin: 33
 
 # ------------------
 # - CAMERA
@@ -42,8 +33,6 @@ esp32_camera:
   brightness: 2
   contrast: 2
 
-  max_framerate: 60 fps
-  idle_framerate: 1fps
   resolution: QCIF
 
 # ------------------
@@ -58,4 +47,4 @@ light:
     num_leds: 36
     rgb_order: GRB
     name: $area Bedside Lamp
-    effects: !include .light_effects.yaml
+    effects: !include common/light_effects.yaml
