@@ -66,7 +66,7 @@ light:
 
 - platform: binary
   id: light_1
-  name: $area Downlights
+  name: $area Spot Lights
   output: output_1
 
 - platform: binary

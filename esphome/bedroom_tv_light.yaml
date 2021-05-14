@@ -1,0 +1,44 @@
+# ------------------
+# - ESPHOME
+# ------------------
+
+packages:
+  base: !include common/sonoff.yaml
+
+substitutions:
+  host: bedroom_tv_light
+  name: Bedroom TV light
+
+wifi:
+  use_address: bathroom_light.local
+
+# ------------------
+# - BINARY SENSORS 
+# ------------------
+
+power_supply:
+  - id: psu_1
+    enable_time: 20ms
+    keep_on_time: 5s
+    pin: 12 # relay pin
+
+binary_sensor:
+  - platform: gpio
+    id: btn_1
+    pin:
+      number: 0
+      inverted: true
+    on_press:
+    - light.toggle: light_1
+
+light:
+  - platform: fastled_clockless
+    id: light_1
+    chipset: UCS1903
+    pin: GPIO3
+    num_leds: 6
+    rgb_order: RGB
+    name: $name
+    power_supply: psu_1
+    restore_mode: RESTORE_DEFAULT_ON
+    effects: !include common/light_effects.yaml

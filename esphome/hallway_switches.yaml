@@ -10,9 +10,6 @@ substitutions:
   name: Hallway Switches
   area: Hallway
 
-wifi:
-  use_address: dining_room_switches.local
-
 # ------------------
 # - BINARY SENSORS 
 # ------------------

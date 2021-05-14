@@ -33,7 +33,7 @@ esp32_camera:
   brightness: 2
   contrast: 2
 
-  resolution: QCIF
+  resolution: 800x600
 
 # ------------------
 # - LIGHT
