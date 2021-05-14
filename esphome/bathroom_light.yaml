@@ -6,9 +6,9 @@ packages:
   base: !include common/sonoff.yaml
 
 substitutions:
-  host: bedroom_light
-  name: Bedroom Light
-  area: Bedroom
+  host: bathroom_light
+  name: Bathroom Light
+  area: Bathroom
 
 # ------------------
 # - BINARY SENSORS 
@@ -36,7 +36,7 @@ light:
     pin: GPIO3
     num_leds: 24
     rgb_order: RGB
-    name: "Bedroom Light"
+    name: $area Mirror Backlight
     power_supply: psu_1
     restore_mode: RESTORE_DEFAULT_ON
     effects: !include common/light_effects.yaml
