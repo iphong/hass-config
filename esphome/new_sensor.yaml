@@ -1,0 +1,26 @@
+logger:
+
+esphome:
+  board: esp12e
+  platform: esp8266
+  name: new_sensor
+  build_path: build/new_sensor
+  on_boot:
+    priority: -10
+    then:
+      - logger.log: received "bar"
+      - esp_net.publish:
+          topic: hell
+          payload: '{}'
+
+esp_net:
+  subscribe:
+    - topic: foo
+      then:
+        - logger.log: received "foo"
+    - topic: bar
+      then:
+        - logger.log: received "bar"
+        - esp_net.publish:
+            topic: hell
+            payload: '{}'
