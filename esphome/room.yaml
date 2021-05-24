@@ -1,0 +1,93 @@
+esphome:
+  name: esp
+  platform: ESP32
+  board: esp32dev
+  name_add_mac_suffix: yes
+
+wifi:
+  power_save_mode: NONE
+  reboot_timeout: 0s
+  ap:
+    ssid: ESP
+
+ota:
+api:
+  reboot_timeout: 0s
+
+captive_portal:
+
+sensor:
+  - platform: adc
+    pin: 32
+    id: adc_1
+  - platform: adc
+    pin: 33
+    id: adc_2
+  - platform: adc
+    pin: 34
+    id: adc_3
+  - platform: adc
+    pin: 35
+    id: adc_4
+  - platform: adc
+    pin: 36
+    id: adc_5
+  - platform: adc
+    pin: 37
+    id: adc_6
+  - platform: adc
+    pin: 38
+    id: adc_7
+  - platform: adc
+    pin: 39
+    id: adc_8
+
+output:
+  - platform: ledc
+    pin: 2
+    id: pwm_1
+  - platform: ledc
+    pin: 4
+    id: pwm_2
+  - platform: ledc
+    pin: 5
+    id: pwm_3
+  - platform: ledc
+    pin: 13
+    id: pwm_4
+  - platform: ledc
+    pin: 14
+    id: pwm_5
+  - platform: ledc
+    pin: 15
+    id: pwm_6
+  - platform: ledc
+    pin: 16
+    id: pwm_7
+  - platform: ledc
+    pin: 17
+    id: pwm_8
+  - platform: ledc
+    pin: 18
+    id: pwm_9
+  - platform: ledc
+    pin: 19
+    id: pwm_10
+  - platform: ledc
+    pin: 21
+    id: pwm_11
+  - platform: ledc
+    pin: 22
+    id: pwm_12
+  - platform: ledc
+    pin: 23
+    id: pwm_13
+  - platform: ledc
+    pin: 25
+    id: pwm_14
+  - platform: ledc
+    pin: 26
+    id: pwm_15
+  - platform: ledc
+    pin: 27
+    id: pwm_16

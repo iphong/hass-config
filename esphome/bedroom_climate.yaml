@@ -1,0 +1,65 @@
+
+packages:
+  common: !include common/base.yaml
+
+substitutions:
+  led: GPIO16
+  host: bedroom_climate
+  name: Bedroom Climate
+  area: Bedroom
+
+esphome:
+  platform: ESP8266
+  board: modwifi
+  esp8266_restore_from_flash: yes
+
+api:
+  services:
+    - service: ir_send_nec
+      variables:
+        address: int
+        command: int
+      then:
+      - remote_transmitter.transmit_nec:
+          address: !lambda 'return address;'
+          command: !lambda 'return command;'
+    - service: ir_send_lg
+      variables:
+        code: int
+      then:
+      - remote_transmitter.transmit_lg:
+          data: !lambda 'return code;'
+
+remote_transmitter:
+  pin: GPIO14
+  carrier_duty_percent: 50%
+
+remote_receiver:
+  id: rcvr
+  pin:
+    number: GPIO5
+    inverted: True
+    mode: INPUT_PULLUP
+  tolerance: 55%
+  dump: all
+
+sensor:
+- platform: dht
+  pin: GPIO2
+  model: dht11
+  temperature:
+    id: temperature
+    name: $area Temperature
+  humidity:
+    id: humidity
+    name: $area Humidity
+
+climate:
+  - platform: daikin
+    name: $area AC
+    sensor: temperature
+    receiver_id: rcvr
+    visual:
+      min_temperature: 18 °C
+      max_temperature: 30 °C
+      temperature_step: 1 °C

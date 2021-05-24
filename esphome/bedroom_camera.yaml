@@ -29,22 +29,8 @@ esp32_camera:
   pixel_clock_pin: 22
   power_down_pin: 32
 
-  saturation: 1
-  brightness: 2
-  contrast: 2
+  saturation: 0
+  brightness: 0
+  contrast: 0
 
-  resolution: 800x600
-
-# ------------------
-# - LIGHT
-# ------------------
-
-light:
-
-  - platform: fastled_clockless
-    chipset: WS2812B
-    pin: 12
-    num_leds: 36
-    rgb_order: GRB
-    name: $area Bedside Lamp
-    effects: !include common/light_effects.yaml
+  resolution: 1024x768

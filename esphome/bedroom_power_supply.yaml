@@ -1,0 +1,78 @@
+--- # ------------------
+
+# ------------------
+# - ESPHOME
+packages:
+  base: !include common/esp32dev.yaml
+
+substitutions:
+  host: bedroom_power_supply
+  name: Bedroom Power Supply
+  area: Bedroom
+
+# switch:
+  # - platform: gpio
+  #   pin:
+  #     number: 4
+  #     mode: OUTPUT_OPEN_DRAIN
+  #     inverted: true
+  #   name: $area 12V Power Supply
+
+  # - platform: gpio
+  #   pin:
+  #     number: 5
+  #     mode: OUTPUT_OPEN_DRAIN
+  #     inverted: true
+  #   name: $area 24V Power Supply
+
+sensor:
+
+  - platform: adc
+    pin: GPIO33
+    id: adc_1
+    attenuation: 11db
+
+  - platform: total_daily_energy
+    name: $area Energy
+    power_id: power_1
+    on_value:
+      then:
+        - lambda: id(cost_1).publish_state(x * 4000);
+
+  - platform: ct_clamp
+    sensor: adc_1
+    name: $area Current
+    device_class: current
+    accuracy_decimals: 2
+    update_interval: 5s
+    filters:
+      - calibrate_linear:
+          - 0.0 -> 0.0
+          - 0.1 -> 5.0
+      - lambda: 'return x <= 0.6 ? 0 : x;'
+      - sliding_window_moving_average:
+          window_size: 5
+          send_every: 1
+    on_value:
+      then:
+        - lambda: id(power_1).publish_state(x * 220);
+
+  - platform: template
+    id: power_1
+    name: $area Power
+    device_class: power
+    unit_of_measurement: kW
+    accuracy_decimals: 2
+    filters:
+      - multiply: 0.001
+  
+  - platform: template
+    id: cost_1
+    name: $area Daily Cost
+    unit_of_measurement: VND
+    accuracy_decimals: 0
+
+time:
+  - platform: sntp
+    id: my_time
+    timezone: Asia/Saigon

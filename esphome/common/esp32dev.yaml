@@ -1,0 +1,13 @@
+
+packages:
+  common: !include base.yaml
+
+substitutions:
+  led: GPIO2
+
+esphome:
+  platform: ESP32
+  board: esp32dev
+  platformio_options:
+    board_build.f_cpu: 240000000L
+
