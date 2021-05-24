@@ -11,16 +11,51 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+ffmpeg:
+stream:
+
 homeassistant:
   allowlist_external_dirs:
     - /media
     - /tmp
   customize: !include customize.yaml
 
-light:
-  - platform: group
-    name: Bedroom Color Lights
-    entities:
-    - light.bedroom_tv_light
-    - light.bedroom_bedside_lamp
-    - light.bedroom_under_desk_light
+# light:
+#   - platform: group
+#     name: Bedroom Color Lights
+#     entities:
+#     - light.bedroom_tv_backlight
+#     - light.bedroom_desk_backlight
+#     - light.bedroom_bedside_lamp
+    
+media_player:
+  platform: universal
+  name: Bedroom TV
+  children: []
+  commands:
+    turn_on:
+      service: script.turn_on_bedroom_tv
+    turn_off:
+      service: script.turn_off_bedroom_tv
+    volume_up:
+      service: esphome.bedroom_tv_remote_control
+      data:
+        command: 0x58A7
+    volume_down:
+      service: esphome.bedroom_tv_remote_control
+      data:
+        command: 0x7887
+    volume_mute:
+      service: esphome.bedroom_tv_remote_control
+      data:
+        command: 0x08F7
+    # select_source:
+    #   service: esphome.bedroom_tv_remote_control
+    #   data: 0x48B7
+
+  attributes:
+    state: input_boolean.bedroom_tv_state
+    # is_volume_muted: switch.living_room_mute
+    # volume_level: media_player.receiver|volume_level
+    # source: media_player.receiver|source
+    # source_list: media_player.receiver|source_list

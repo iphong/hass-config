@@ -1,8 +1,32 @@
-reload_config:
-  alias: Reload Config
+stream_bedroom_camera_on_to_hub_display:
   sequence:
-  - service: automation.reload
-  - service: frontend.reload_themes
-  - service: group.reload
-  - service: homeassistant.reload_core_config
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.bedroom_display
+    data:
+      media_content_id: http://homeassistant.local:8123/api/camera_proxy_stream/camera.bedroom_camera?token={{state_attr("camera.bedroom_camera",
+        "token")}}
+      media_content_type: image/mjpeg
+  mode: single
+  alias: Stream bedroom camera on to hub display
+turn_on_bedroom_tv:
+  alias: Turn on bedroom tv
+  sequence:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.bedroom_tv_state
+  - service: esphome.bedroom_tv_remote_control
+    data:
+      command: 18615
+  mode: single
+turn_off_bedroom_tv:
+  alias: Turn off bedroom tv
+  sequence:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.bedroom_tv_state
+  - service: esphome.bedroom_tv_remote_control
+    data:
+      command: 18615
   mode: single
