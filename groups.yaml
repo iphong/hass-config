@@ -1,0 +1,10 @@
+# bedroom_lights_on:
+#   all: false
+#   entities:
+#   - light.bedroom_desk_backlight
+#   - light.bedroom_bedside_lamp
+# bedroom_lights_off:
+#   all: true
+#   entities:
+#   - light.bedroom_desk_backlight
+#   - light.bedroom_bedside_lamp
