@@ -4,9 +4,9 @@ packages:
 
 substitutions:
   led: GPIO16
-  host: bedroom_climate
-  name: Bedroom Climate
-  area: Bedroom
+  host: living_room_remote
+  name: Living Room Remote
+  area: Living Room
 
 esphome:
   platform: ESP8266
@@ -62,4 +62,4 @@ climate:
     visual:
       min_temperature: 18 °C
       max_temperature: 30 °C
-      temperature_step: 1 °C
+      # temperature_step: 1 °C

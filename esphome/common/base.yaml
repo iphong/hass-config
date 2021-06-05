@@ -38,8 +38,8 @@ api:
 # ------------------
 
 wifi:
-  fast_connect: true
   power_save_mode: NONE
+  fast_connect: true
   networks:
   - ssid: !secret wifi_ssid
     password: !secret wifi_psk

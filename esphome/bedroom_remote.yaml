@@ -1,0 +1,79 @@
+# ------------------
+# - ESPHOME
+# ------------------
+
+packages:
+  base: !include common/sonoff.yaml
+
+substitutions:
+  host: bedroom_remote
+  name: Bedroom Remote
+  area: Bedroom
+
+api:
+  services:
+    - service: control
+      variables:
+        command: int
+      then:
+      - remote_transmitter.transmit_nec:
+          address: 0x02FD
+          command: !lambda 'return command;'
+
+remote_transmitter:
+- pin:
+    number: 1
+    inverted: true
+  carrier_duty_percent: 50%
+
+sensor:
+- platform: dht
+  pin: GPIO3
+  model: dht11
+  temperature:
+    id: temperature
+    name: $area Temperature
+  humidity:
+    id: humidity
+    # name: $area Humidity
+  update_interval: 3s
+
+# ------------------
+# - BINARY SENSORS 
+# ------------------
+
+power_supply:
+  - id: psu_1
+    enable_time: 20ms
+    keep_on_time: 5s
+    pin: 12 # relay pin
+
+# binary_sensor:
+#   - platform: gpio
+#     id: btn_1
+#     pin:
+#       number: 0
+#       inverted: true
+#     on_press:
+#     - light.toggle: light_1
+
+# light:
+#   - platform: fastled_clockless
+#     id: light_1
+#     chipset: UCS1903
+#     pin: GPIO13
+#     num_leds: 12
+#     rgb_order: RGB
+#     name: $name Backlight
+#     power_supply: psu_1
+#     restore_mode: RESTORE_DEFAULT_ON
+#     effects: !include common/light_effects.yaml
+
+climate:
+  - platform: daikin
+    name: $area AC
+    sensor: temperature
+    visual:
+      min_temperature: 18 °C
+      max_temperature: 30 °C
+      temperature_step: 1 °C
