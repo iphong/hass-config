@@ -6,9 +6,11 @@ packages:
   base: !include common/switches.yaml
 
 substitutions:
-  host: hallway_switches
-  name: Hallway Switches
-  area: Hallway
+  host: switches
+  name: Switches
+
+wifi:
+  use_address: hallway_switches.local
 
 # ------------------
 # - BINARY SENSORS 
@@ -66,15 +68,15 @@ light:
 
 - platform: binary
   id: light_1
-  name: $area Light 1
+  name: Switch A
   output: output_1
 
 - platform: binary
   id: light_2
-  name: $area Light 2
+  name: Switch B
   output: output_2
 
 - platform: binary
   id: light_3
-  name: $area Light 3
+  name: Switch C
   output: output_3

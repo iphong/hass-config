@@ -1,0 +1,31 @@
+# ------------------
+# - ESPHOME
+# ------------------
+
+packages:
+  base: !include common/sonoff.yaml
+
+substitutions:
+  host: sonoff
+  name: Sonoff R1
+
+# ------------------
+# - BINARY SENSORS 
+# ------------------
+
+#h929418
+
+binary_sensor:
+  - platform: gpio
+    id: btn_1
+    pin:
+      number: 0
+      inverted: true
+    on_press:
+    - switch.toggle: switch_1
+
+switch:
+  - platform: gpio
+    id: switch_1
+    pin: 12
+    name: Relay

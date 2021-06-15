@@ -6,12 +6,9 @@ packages:
   common: !include common/camera.yaml
 
 substitutions:
-  host: bedroom_camera
-  name: Bedroom Camera
+  host: bedroom_lamp
+  name: Bedroom Lamp
   area: Bedroom
-
-wifi:
-  use_address: bedroom_lamp.local
 
 # ------------------
 # - CAMERA
@@ -35,5 +32,3 @@ esp32_camera:
   saturation: 0
   brightness: 0
   contrast: 0
-
-  resolution: 1024x768

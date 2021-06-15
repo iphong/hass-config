@@ -39,11 +39,9 @@ api:
 
 wifi:
   power_save_mode: NONE
-  fast_connect: true
-  networks:
-  - ssid: !secret wifi_ssid
-    password: !secret wifi_psk
+  networks: !secret wifi_networks
   ap:
+    ap_timeout: 5s
     ssid: $name
 
 # text_sensor:
