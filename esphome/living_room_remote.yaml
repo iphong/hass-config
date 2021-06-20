@@ -12,6 +12,11 @@ esphome:
   platform: ESP8266
   board: modwifi
   esp8266_restore_from_flash: yes
+  # platformio_options:
+    # board_build.ldscript: eagle.flash.2m.ld
+
+wifi:
+  use_address: living_room_remote.local
 
 api:
   services:
