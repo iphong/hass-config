@@ -1,0 +1,66 @@
+# ------------------
+# - ESPHOME
+# ------------------
+
+packages:
+  common: !include common/base.yaml
+
+esphome:
+  name_add_mac_suffix: no
+  esp8266_restore_from_flash: yes
+
+substitutions:
+  host: rgb_light
+  name: RGB Light
+
+# ------------------
+# - LIGHTS 
+# ------------------
+
+light:
+
+  - platform: rgb
+    name: ${name} A
+    red: output_r1
+    blue: output_b1
+    green: output_g1
+
+  - platform: rgb
+    name: ${name} B
+    red: output_r2
+    blue: output_b2
+    green: output_g2
+
+output:
+
+  # Outputs for channel A
+  - platform: esp8266_pwm
+    id: output_g1
+    frequency: 10000 Hz
+    pin: GPIO12
+    max_power: 0.50
+  - platform: esp8266_pwm
+    id: output_r1
+    frequency: 1000 Hz
+    pin: GPIO13
+  - platform: esp8266_pwm
+    id: output_b1
+    frequency: 1000 Hz
+    pin: GPIO14
+    max_power: 0.50
+
+  #Outputs for channel B
+  - platform: esp8266_pwm
+    id: output_g2
+    frequency: 1000 Hz
+    pin: GPIO15
+    max_power: 0.50
+  - platform: esp8266_pwm
+    id: output_r2
+    frequency: 10000 Hz
+    pin: GPIO5
+  - platform: esp8266_pwm
+    id: output_b2
+    frequency: 10000 Hz
+    pin: GPIO4
+    max_power: 0.50

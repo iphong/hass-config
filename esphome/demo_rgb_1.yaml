@@ -1,0 +1,74 @@
+# ------------------
+# - ESPHOME
+# ------------------
+
+packages:
+  common: !include common/base.yaml
+
+esphome:
+  board: esp12e
+  platform: ESP8266
+  name_add_mac_suffix: no
+  esp8266_restore_from_flash: yes
+  platformio_options:
+    board_build.filesystem: littlefs
+    board_build.ldscript: eagle.flash.4m3m.ld
+
+substitutions:
+  led: GPIO2
+  host: demo_rgb_light_1
+  name: Demo RGB Light 1
+
+# ------------------
+# - LIGHTS 
+# ------------------
+
+light:
+
+  - platform: rgb
+    name: ${name}A
+    red: output_2
+    blue: output_3
+    green: output_1
+
+  - platform: rgb
+    name: ${name}B
+    red: output_5
+    blue: output_6
+    green: output_4
+
+output:
+
+  # Outputs for channel A
+  - platform: esp8266_pwm
+    id: output_1
+    frequency: 1000 Hz
+    pin: GPIO12
+    max_power: 1
+  - platform: esp8266_pwm
+    id: output_2
+    frequency: 1000 Hz
+    pin: GPIO13
+    max_power: 1
+  - platform: esp8266_pwm
+    id: output_3
+    frequency: 1000 Hz
+    pin: GPIO14
+    max_power: 1
+
+  #Outputs for channel B
+  - platform: esp8266_pwm
+    id: output_4
+    frequency: 1000 Hz
+    pin: GPIO15
+    max_power: 1
+  - platform: esp8266_pwm
+    id: output_5
+    frequency: 1000 Hz
+    pin: GPIO5
+    max_power: 1
+  - platform: esp8266_pwm
+    id: output_6
+    frequency: 1000 Hz
+    pin: GPIO4
+    max_power: 1

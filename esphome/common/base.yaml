@@ -1,11 +1,19 @@
 substitutions:
   led: GPIO2
+  host: esphome
+  addr: $host
 
 esphome:
   name: $host
+  board: esp12e
+  platform: ESP8266
   build_path: build/$host
+  name_add_mac_suffix: yes
+  esp8266_restore_from_flash: yes
   platformio_options:
     upload_speed: 460800
+    board_build.filesystem: littlefs
+    board_build.ldscript: eagle.flash.4m.ld
     board_build.f_cpu: 160000000L
     board_build.f_flash: 80000000L
 
@@ -23,11 +31,12 @@ captive_portal:
 web_server:
 
 logger:
-  baud_rate: 0
+  # baud_rate: 0
 
 ota:
 
 api:
+  reboot_timeout: 0s
   services:
   - service: restart
     then:
@@ -39,10 +48,14 @@ api:
 
 wifi:
   power_save_mode: NONE
-  networks: !secret wifi_networks
+  fast_connect: true
+  domain: ''
+  networks:
+    ssid: !secret wifi_ssid
+    password: !secret wifi_pass
   ap:
     ap_timeout: 5s
-    ssid: $name
+    ssid: ${host}_AP
 
 # text_sensor:
 #   - platform: wifi_info
