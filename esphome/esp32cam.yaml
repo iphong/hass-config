@@ -1,0 +1,55 @@
+# ------------------
+# - ESPHOME
+# ------------------
+packages:
+  common: !include common/base.yaml
+
+esphome:
+  platform: ESP32
+  board: esp32cam
+  name_add_mac_suffix: yes
+  platformio_options:
+    board_build.f_cpu: 240000000L
+
+substitutions:
+  led: GPIO33
+  host: esp32cam
+  name: ESP32Cam
+
+# ------------------
+# - CAMERA
+# ------------------
+
+esp32_camera:
+  name: Camera Stream
+  external_clock:
+    pin: 0
+    frequency: 20MHz
+  i2c_pins:
+    sda: 26
+    scl: 27
+  data_pins: [5, 18, 19, 21, 36, 39, 34, 35]
+  vsync_pin: 25
+  href_pin: 23
+  pixel_clock_pin: 22
+  power_down_pin: 32
+
+  saturation: 1
+  brightness: 2
+  contrast: 0
+
+  # resolution: 320x240
+  jpeg_quality: 25
+  max_framerate: 30fps
+  idle_framerate: 0.1fps
+
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: output_1
+
+light:
+  - platform: binary
+    name: Camera Light
+    output: output_1
+    restore_mode: RESTORE_DEFAULT_OFF

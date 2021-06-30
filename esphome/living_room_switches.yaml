@@ -48,15 +48,24 @@ output:
 
 - platform: gpio
   id: output_1
-  pin: 4
+  pin:
+    number: 4
+    mode: OUTPUT_OPEN_DRAIN
+    inverted: false
 
 - platform: gpio
   id: output_2
-  pin: 15
+  pin:
+    number: 15
+    mode: OUTPUT_OPEN_DRAIN
+    inverted: false
 
 - platform: gpio
   id: output_3
-  pin: 13
+  pin:
+    number: 13
+    mode: OUTPUT_OPEN_DRAIN
+    inverted: false
 
 # ------------------
 # - LIGHTS

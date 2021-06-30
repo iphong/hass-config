@@ -25,17 +25,26 @@ substitutions:
 
 light:
 
+  # - platform: rgbww
+  #   name: ${name}A
+  #   red: output_2
+  #   blue: output_3
+  #   green: output_1
+  #   cold_white: output_4
+  #   warm_white: output_5
+  #   cold_white_color_temperature: 6536 K
+  #   warm_white_color_temperature: 2000 K
   - platform: rgb
     name: ${name}A
     red: output_2
     blue: output_3
     green: output_1
 
-  - platform: rgb
-    name: ${name}B
-    red: output_5
-    blue: output_6
-    green: output_4
+  # - platform: rgb
+  #   name: ${name}B
+  #   red: output_5
+  #   blue: output_6
+  #   green: output_4
 
 output:
 

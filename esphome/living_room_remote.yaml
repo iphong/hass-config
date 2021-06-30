@@ -16,7 +16,7 @@ esphome:
     # board_build.ldscript: eagle.flash.2m.ld
 
 wifi:
-  use_address: living_room_remote.local
+  use_address: living_room_remote-1dfa47
 
 api:
   services:
