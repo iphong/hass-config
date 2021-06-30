@@ -1,0 +1,185 @@
+
+packages:
+  common: !include common/base.yaml
+
+substitutions:
+  host: switches
+  name: Switches
+
+wifi:
+  use_address: switches-fcb155
+
+esphome:
+  platform: ESP8266
+  board: modwifi
+  name_add_mac_suffix: yes
+  project:
+    name: "iphong.switches_dms303"
+    version: "1.0.0"
+  on_boot:
+    priority: -100
+    then:
+      light.turn_on: light_status
+
+globals:
+  - id: is_blinking
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+script:
+  - id: status_blinking
+    then:
+      if:
+        condition:
+          lambda: |-
+              return id(is_blinking) != 0;
+        then:
+          - light.turn_off: light_1
+          - light.turn_off: light_2
+          - light.turn_off: light_3
+          - lambda: |-
+              ESP.restart();
+        else:
+          - light.turn_off: light_1
+          - light.turn_off: light_2
+          - light.turn_off: light_3
+          - globals.set:
+              id: is_blinking
+              value: '1'
+          - light.control:
+              id: light_status
+              effect: strobe
+          - lambda: |-
+              wifi_wificomponent->clear_sta();
+
+              wifi::WiFiAP wifi_wifiap = wifi::WiFiAP();
+              wifi_wifiap.set_ssid("${host}_" + get_mac_address());
+              wifi_wificomponent->set_ap(wifi_wifiap);
+              wifi_wificomponent->set_ap_timeout(0);
+              std::string apSSID = "${host}_" + get_mac_address().substr(6);
+              String apPSK = "";
+              WiFi.mode(WIFI_AP_STA);
+              WiFi.softAP(apSSID.c_str(), apPSK);
+              wifi_wificomponent->setup();
+
+# ------------------
+# - BINARY SENSORS 
+# ------------------
+
+binary_sensor:
+
+# Button 1 - press
+- platform: gpio
+  id: input_1
+  pin:
+    number: 5
+    inverted: true
+  on_press:
+    - light.toggle: light_1
+  filters:
+    - delayed_on_off: 50ms
+# Button 1 - long press
+- platform: gpio
+  id: input_1a
+  pin:
+    number: 5
+    inverted: true
+  on_press:
+    - script.execute: status_blinking
+  filters:
+    - delayed_on: 2s
+
+# Button 2 - press
+- platform: gpio
+  id: input_2
+  pin:
+    number: 3
+    inverted: true
+  on_press:
+    - light.toggle: light_2
+  filters:
+    - delayed_on_off: 100ms
+# Button 2 - long press
+- platform: gpio
+  id: input_2a
+  pin:
+    number: 3
+    inverted: true
+  on_press:
+    - script.execute: status_blinking
+  filters:
+    - delayed_on: 2s
+
+# Button 3 - press
+- platform: gpio
+  id: input_3
+  pin:
+    number: 12
+    inverted: true
+  on_press:
+    - light.toggle: light_3
+  filters:
+    - delayed_on_off: 100ms
+# Button 3 - 2s long press
+- platform: gpio
+  id: input_3a
+  pin:
+    number: 12
+    inverted: true
+  on_press:
+    - script.execute: status_blinking
+  filters:
+    - delayed_on: 2s
+
+# ------------------
+# - OUTPUTS 
+# ------------------
+
+output:
+
+- platform: esp8266_pwm
+  id: output_link
+  pin:
+    number: 0
+    inverted: true
+
+- platform: gpio
+  id: output_1
+  pin: 15
+
+- platform: gpio
+  id: output_2
+  pin: 4
+
+- platform: gpio
+  id: output_3
+  pin: 13
+
+# ------------------
+# - LIGHTS
+# ------------------
+
+light:
+
+- platform: monochromatic
+  id: light_status
+  output: output_link
+  restore_mode: ALWAYS_OFF
+  effects:
+    - strobe:
+
+- platform: binary
+  id: light_1
+  name: Switch A
+  output: output_1
+
+- platform: binary
+  id: light_2
+  name: Switch B
+  output: output_2
+
+- platform: binary
+  id: light_3
+  name: Switch C
+  output: output_3
