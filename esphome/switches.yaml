@@ -3,16 +3,13 @@ packages:
   common: !include common/base.yaml
 
 substitutions:
-  host: switches
+  host: switches-fcb155
   name: Switches
-
-wifi:
-  use_address: switches-fcb155
 
 esphome:
   platform: ESP8266
   board: modwifi
-  name_add_mac_suffix: yes
+  name_add_mac_suffix: no
   project:
     name: "iphong.switches_dms303"
     version: "1.0.0"
@@ -50,18 +47,18 @@ script:
           - light.control:
               id: light_status
               effect: strobe
-          - lambda: |-
-              wifi_wificomponent->clear_sta();
+          # - lambda: |-
+          #     wifi_wificomponent->clear_sta();
 
-              wifi::WiFiAP wifi_wifiap = wifi::WiFiAP();
-              wifi_wifiap.set_ssid("${host}_" + get_mac_address());
-              wifi_wificomponent->set_ap(wifi_wifiap);
-              wifi_wificomponent->set_ap_timeout(0);
-              std::string apSSID = "${host}_" + get_mac_address().substr(6);
-              String apPSK = "";
-              WiFi.mode(WIFI_AP_STA);
-              WiFi.softAP(apSSID.c_str(), apPSK);
-              wifi_wificomponent->setup();
+          #     wifi::WiFiAP wifi_wifiap = wifi::WiFiAP();
+          #     wifi_wifiap.set_ssid("${host}_" + get_mac_address());
+          #     wifi_wificomponent->set_ap(wifi_wifiap);
+          #     wifi_wificomponent->set_ap_timeout(0);
+          #     std::string apSSID = "${host}_" + get_mac_address().substr(6);
+          #     String apPSK = "";
+          #     WiFi.mode(WIFI_AP_STA);
+          #     WiFi.softAP(apSSID.c_str(), apPSK);
+          #     wifi_wificomponent->setup();
 
 # ------------------
 # - BINARY SENSORS 

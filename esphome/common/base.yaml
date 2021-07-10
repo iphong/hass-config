@@ -20,10 +20,10 @@ esphome:
 # - COMMON FEATURES
 # ------------------
 
-# status_led:
-#   pin:
-#     number: $led
-#     inverted: true
+status_led:
+  pin:
+    number: $led
+    inverted: true
 
 captive_portal:
 
@@ -35,10 +35,10 @@ ota:
 
 api:
   reboot_timeout: 0s
-  # services:
-  # - service: restart
-  #   then:
-  #     lambda: 'ESP.restart();'
+  services:
+  - service: restart
+    then:
+      lambda: 'ESP.restart();'
 
 # ------------------
 # - WIFI NETWORK 
@@ -50,12 +50,13 @@ wifi:
   # use_address: 192.168.4.1
   power_save_mode: NONE
   fast_connect: true
-  ssid: nest
-  password: jmrp24mkl;
+  ssid: bedroom-ap
+  password: '12345678'
   reboot_timeout: 0s
-  # ap:
-  #   ap_timeout: 15s
-  #   ssid: ${host}-AP
+  domain: ''
+  ap:
+    ap_timeout: 15s
+    ssid: ${host}-ap
 
 # text_sensor:
 #   - platform: wifi_info

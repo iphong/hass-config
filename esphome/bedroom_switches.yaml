@@ -29,8 +29,8 @@ binary_sensor:
   pin:
     number: 5
     inverted: true
-  # on_press:
-  # - light.toggle: light_2
+  on_press:
+  - light.toggle: light_2
 
 - platform: gpio
   id: input_3
